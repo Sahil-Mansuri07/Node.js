@@ -2,6 +2,8 @@
 
 const express=require("express");
 
+const fs=require("fs");
+
 const app=express();
 
 const users=require("./MOCK_DATA.json");
@@ -34,5 +36,22 @@ app.get("/users",(req, res)=>{
 
     return res.send(html);
 });
+
+
+app.post('/api/users' , (req , res)=>{
+    // TODO : Create new user
+
+    const body=req.body;
+
+    users.push({id: users.length+1, ...body});
+
+    fs.writeFile("./MOCK_DATA.json",body, JSON.stringify(users), (err, data)=>{
+
+        return res.json({status: "SUCCESS",id:users.length});
+
+    });
+
+})
+
 
 app.listen(PORT, ()=>console.log("Server started on PORT ", PORT));
