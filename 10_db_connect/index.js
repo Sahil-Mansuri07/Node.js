@@ -82,12 +82,41 @@ app.get("/api/users/:id", async(req, res)=>{
 
     return res.status(200).json(user);
 
+});
 
+app.patch("/api/users/:id", async(req, res)=>{
+
+    const id=req.params.id;
+
+    console.log(id);
+
+    if(id<=0)
+    {
+        res.json({msg:"invalid id"});
+    }
+
+    const user=await userModel.findByIdAndUpdate(id,{last_name:"mansuri"});
+
+    return res.status(200).json(user);
 
 });
 
+app.delete("/api/users/:id", async(req, res)=>{
 
+    const id=req.params.id;
 
+    console.log(id);
+
+    if(id<=0)
+    {
+        res.json({msg:"invalid id"});
+    }
+
+    const user=await userModel.findByIdAndDelete(id);
+
+    return res.status(200).json({msg:"deleted"});
+
+});
 
 
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
