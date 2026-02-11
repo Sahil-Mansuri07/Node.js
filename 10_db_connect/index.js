@@ -65,5 +65,30 @@ app.post("/api/users", async(req, res)=>{
     return res.status(201).json({msg:"data inserted"});
 });
 
+app.get("/api/users/:id", async(req, res)=>{
+
+    const id=req.params.id;
+
+    console.log(id);
+
+    if(id<=0)
+    {
+        res.json({msg:"invalid id"});
+    }
+
+    const user=await userModel.findById(id);
+
+    console.log(user);
+
+    return res.status(200).json(user);
+
+
+
+});
+
+
+
+
+
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
 
