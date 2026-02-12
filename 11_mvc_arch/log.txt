@@ -1,0 +1,8 @@
+function now() { [native code] }:::1:GET:/api/users
+function now() { [native code] }:::1:GET:/api/users
+function now() { [native code] }:::1:POST:/api/users
+function now() { [native code] }:::1:POST:/api/users
+function now() { [native code] }:::1:POST:/api/users
+function now() { [native code] }:::1:POST:/api/users
+function now() { [native code] }:::1:GET:/api/users
+function now() { [native code] }:::1:GET:/api/users/698e352e117800e9d9af676b
