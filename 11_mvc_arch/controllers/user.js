@@ -56,10 +56,47 @@ async function createUser(req, res){
 
     return res.status(201).json(user);
 
-}    
+}  
+
+async function updateUser(req, res){
+    
+    const id=req.params.id;
+
+    if(id<=0)
+        {
+            res.json({msg:"invalid id"});
+        }
+        
+    const updatedUser=await Users.findByIdAndUpdate(id,{last_name:"Khan"});
+
+    return res.status(200).json(updatedUser);
+
+}
+
+async function deleteUser(req, res){
+    
+    const id=req.params.id;
+
+    if(id<=0)
+        {
+            res.json({msg:"invalid id"});
+        }
+        
+    await Users.findByIdAndDelete(id);
+
+    return res.status(200).json({msg:"deleted"});
+
+}
+
+
+
 
 module.exports={
     getAllUsers,
     getUserById,
     createUser,
+    updateUser,
+    deleteUser
 };
+
+

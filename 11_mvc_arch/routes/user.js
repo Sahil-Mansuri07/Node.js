@@ -1,6 +1,6 @@
 const express=require("express");
 
-const { getAllUsers,getUserById,createUser,}=require("../controllers/user");
+const { getAllUsers,getUserById,createUser,updateUser,deleteUser}=require("../controllers/user");
 
 const router=express.Router();
 
@@ -9,6 +9,8 @@ router.route("/")
 .post(createUser);
 
 router.route("/:id")
-.get(getUserById);
+.get(getUserById)
+.patch(updateUser)
+.delete(deleteUser);
 
 module.exports=router;
