@@ -4,10 +4,10 @@ const url=require("../models/url");
 
 async function generateShortUrl(req, res){
 
-    const newShortId=shortId();
+    const newShortId=shortId.generate();
 
     const body=req.body;
-
+    
     if(!body.url) return res.status(400).json({error:"url is required"});
 
     const result=await url.create({
@@ -18,7 +18,7 @@ async function generateShortUrl(req, res){
 
     console.log("URl is=>>", body.url);
 
-    return res.render("home",{id:shortId});
+    return res.render("home",{id:newShortId});
 }
 
 async function getAnalytics(req, res){

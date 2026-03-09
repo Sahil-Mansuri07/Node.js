@@ -2,14 +2,13 @@ const express=require("express");
 
 const urlModel=require("../models/url");
 
-const router=express.Router();
 
-router.get("/",async(req, res)=>{
+async function staticRoute(req, res){
     
     const allUrls=await urlModel.find({});
 
-    return res.render("home",{url:allUrls});
+    return res.render("home",{urls:allUrls});
 
-});
+};
 
-module.exports=router;
+module.exports=staticRoute;

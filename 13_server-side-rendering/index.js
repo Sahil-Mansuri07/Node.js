@@ -16,16 +16,16 @@ const PORT=8000;
 
 connectToDb.dbConnection("mongodb://localhost:27017/url-shortner");
 
-// Set EJS as the template engine
-app.set('view engine', "ejs");
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
-// Set the views directory (optional, 'views' is the default)
-app.set('views', path.join('views'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use("/url",urlRoute);
-app.use("/",staticRoute);
+app.use("/abc",staticRoute);
+
+app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.get("/:shortId",async (req, res) => {
 
@@ -37,8 +37,9 @@ app.get("/:shortId",async (req, res) => {
         {shortId:shortedId},
         {$push:{visitHistory:{timestamp:Date.now()}}},
     );
-    
-    res.redirect(entry.redirectUrl);
+
+    console.log("Redirect URl is-->>", entry.redirectUrl);
+   return res.redirect(entry.redirectUrl); 
 
 });
 
