@@ -29,7 +29,7 @@ router.post("/signin",async (req,res)=>{
 
     try {
         const token= await userModel.matchPasswordAndGenerateToken(email,password);
-        console.log("Token is: ", token);
+    
         return res.cookie("token",token).redirect("/");
     } catch (error) {
         return res.render("signin",{error:"Invalid email or password"});
